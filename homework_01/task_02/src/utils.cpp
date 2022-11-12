@@ -2,6 +2,4 @@
 
 #include <stack>
 
-int Calculate(const std::string& data) {
-  return 0;
-}
+int Calculate(const std::string &data) { return 0; }
