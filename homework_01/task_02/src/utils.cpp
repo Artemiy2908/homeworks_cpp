@@ -1,7 +1,9 @@
 #include "utils.hpp"
 
 #include <stack>
+
 using namespace std;
+
 int Calculate(const std::string &data) { 
     string number_1="";
     string number_2="";
@@ -11,9 +13,11 @@ int Calculate(const std::string &data) {
     int koll_znak=0;
     for (char const& simvol: data){
         if (simvol!='+' && simvol!='-' && simvol!='*' && simvol!='/' && koll_znak==0){
-            number_1.push_back(simvol);
-        }else if(simvol!='+' && simvol!='-' && simvol!='*' && simvol!='/' && koll_znak==1){
-            number_2.push_back(simvol);
+            if(koll_znak==0){
+                number_1.push_back(simvol);
+            } else{
+                number_2.push_back(simvol);
+            }
         }else{
             znak.push_back(simvol);
             koll_znak+=1;

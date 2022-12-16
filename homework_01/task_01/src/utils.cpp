@@ -6,38 +6,38 @@
 #include <vector>
 
 std::vector<std::string> SplitString(const std::string& data){
-    std::vector<std::string> slovar;
+    std::vector<std::string> dict;
     std::string word="";
-    int skob=0;
+    bool brackets=false;
     for(char const& simvol: data){
-        if (skob==0){
+        if (!brackets){
             if (simvol=='('){
-                skob=1;
-            }else if(simvol!=' ' and simvol!='\t'){
-            word.push_back(simvol);
-            }else if(simvol==' ' or simvol=='\t'){
+                brackets=true;
+            }else if(simvol!=' ' && simvol!='\t'){
+                word.push_back(simvol);
+            }else {
                 if (!word.empty()){
-                    slovar.push_back(word);
+                    dict.push_back(word);
                     word.clear();
                     }
-                };
-        };
-        if (skob==1){
+                }
+        }
+        if (brackets){
             if (simvol!=')'){
-            word.push_back(simvol);
+                word.push_back(simvol);
             }else if(simvol==')'){
-            word.push_back(simvol);
-            if (!word.empty()){
-                slovar.push_back(word);
-                word.clear();
+                word.push_back(simvol);
+                if (!word.empty()){
+                    dict.push_back(word);
+                    word.clear();
+                }
+            brackets=false;
             }
-            skob=0;
-            };
-        };
-    };
-if (!word.empty()){
-slovar.push_back(word);
-word.clear();
+        }
+    }
+    if (!word.empty()){
+        dict.push_back(word);
+        word.clear();
+    }
+    return{dict};
 }
-return{slovar};
-};
